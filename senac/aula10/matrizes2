@@ -1,0 +1,33 @@
+
+    let salas = [
+
+        ["Livre", "Livre", "Ocupado"],
+    
+        ["Ocupado", "Livre", "Livre"],
+    
+        ["Livre", "Ocupado", "Livre"]
+    
+    ]
+    
+    
+    
+    
+    for (let linhas = 0; linhas < salas.length; linhas++) {
+        const corredorAssentos = salas[linhas];
+    
+        for (let colunas = 0; colunas < corredorAssentos.length; colunas++) {
+            const statusAassento = corredorAssentos[colunas];
+    
+            if (statusAassento === "Livre") {
+    
+                console.log("Disponível para venda!")
+                
+            } else {
+    
+                console.log("Assento ocupado!")
+    
+            }
+            
+        }
+        
+    }

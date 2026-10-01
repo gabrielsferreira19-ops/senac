@@ -1,0 +1,10 @@
+let valor = Number(prompt("informe o  valor"));
+if (valor%2 ==0){
+    console.log("numero par");
+    alert("numero par");
+    document.write("numero par");
+} else{
+    console.log("numero impar");
+    alert("numero impar");
+    document.write("numero impar")
+}
