@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha primeira página</title>
+</head>
+<body>
+    
+<h1>
+    Meu currículo
+</h1>
+<header>
 
+<main>
+
+<h2>Gabriel</h2>
+
+<section>
+
+    <h3>Contatos</h3>
+    <p>Email: gabrielsferreira19@gmail.com | Telefone: 965088849 </p>
+    <nav>
+
+        <a href="google.com" target="_blank">google</a>
+    </nav>
+
+
+    <section>
+
+
+
+
+    <section>
+        <h3>Educação</h3>
+        <div>
+            <h4>analise e desenvolvimento de Sistema</h4>
+            <p>Universade Veiga de Almeida ´UVA</p>
+            <p> 08/2023 - 03/2026</p>
+        </div>
+
+
+    </section>
+
+
+
+<footer>
+
+    Gabriel - Desenvolvedor 
+
+</footer>
+
+
+ <main>
+
+</body>
+</html>
