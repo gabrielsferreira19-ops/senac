@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kagurabachi | Universo</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background-image: url("img/volume1.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        /* MENU */
+
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 2px solid red;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav {
+            max-width: 1200px;
+            min-height: 72px;
+            margin: auto;
+            padding: 12px 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            color: red;
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+        }
+
+        .menu button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 14px;
+            padding: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .menu button:hover,
+        .menu button.ativo {
+            color: white;
+            border-bottom: 2px solid red;
+        }
+
+        /* TELA INICIAL */
+
+        .inicio {
+            min-height: calc(100vh - 72px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    rgba(100, 0, 0, 0.25),
+                    rgba(0, 0, 0, 0.25) 65%,
+                    rgba(0, 0, 0, 0.65)
+                );
+        }
+
+        .inicio-conteudo {
+            text-align: center;
+            max-width: 850px;
+            padding: 40px 20px;
+        }
+
+        .subtitulo {
+            color: #ff4545;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .inicio h1 {
+            font-size: clamp(48px, 10vw, 100px);
+            line-height: 1.1;
+            color: #ff2525;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            text-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .inicio p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #dddddd;
+            font-size: 17px;
+        }
+
+        .botao {
+            display: inline-block;
+            background: #c90000;
+            color: white;
+            border: 1px solid red;
+            padding: 13px 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .botao:hover {
+            background: #ff2424;
+            transform: translateY(-3px);
+        }
+
+        /* PÁGINAS INTERNAS */
+
+        .pagina {
+            min-height: calc(100vh - 72px);
+            padding: 55px 20px 80px;
+            background: rgba(0, 0, 0, 0.45);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .titulo-secao {
+            text-align: center;
+            font-size: clamp(30px, 5vw, 44px);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .titulo-secao span {
+            color: #ff2929;
+        }
+
+        .linha {
+            width: 85px;
+            height: 4px;
+            background: #d00000;
+            margin: 0 auto 25px;
+        }
+
+        .introducao {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-align: center;
+            color: #dddddd;
+        }
+
+        /* CARDS */
+
+        .grade {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: rgba(10, 10, 10, 0.91);
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: #ff2929;
+            box-shadow: 0 8px 25px rgba(200, 0, 0, 0.22);
+        }
+
+        .imagem {
+            height: 260px;
+            background: #191919;
+            overflow: hidden;
+            
+        }
+
+        .imagem img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.4s;
+           
+            
+        }
+
+        .card:hover .imagem img {
+            transform: scale(1.05);
+        }
+
+        .card-conteudo {
+            padding: 20px;
+        }
+
+        .categoria {
+            color: #ff4040;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .card h3 {
+            margin: 7px 0 12px;
+            font-size: 22px;
+        }
+
+        .card p {
+            color: #cccccc;
+            font-size: 14px;
+        }
+
+        .aviso {
+            color: #aaaaaa;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        /* UNIVERSO */
+
+        .universo-grade {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .universo-card {
+            padding: 25px;
+            background: rgba(8, 8, 8, 0.91);
+            border-left: 4px solid #d00000;
+            border-top: 1px solid #4a1616;
+            border-right: 1px solid #4a1616;
+            border-bottom: 1px solid #4a1616;
+        }
+
+        .universo-card h3 {
+            color: #ff3434;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .universo-card p {
+            color: #dddddd;
+        }
+
+        /* RODAPÉ */
+
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            background: rgba(0, 0, 0, 0.96);
+            border-top: 2px solid red;
+        }
+
+        footer h3 {
+            color: #ff2929;
+            letter-spacing: 3px;
+        }
+
+        footer p {
+            color: #aaaaaa;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* CELULARES E TABLETS */
+
+        @media (max-width: 850px) {
+            .grade {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            nav {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .grade,
+            .universo-grade {
+                grid-template-columns: 1fr;
+            }
+
+            .menu {
+                justify-content: center;
+                gap: 3px;
+            }
+
+            .menu button {
+                font-size: 12px;
+                padding: 8px 5px;
+            }
+
+            .imagem {
+                height: 320px;
+            }
+
+            .inicio {
+                min-height: calc(100vh - 120px);
+            }
+
+            body {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENU DE NAVEGAÇÃO -->
+
+    <header>
+        <nav>
+            <div class="logo" onclick="mostrarPagina('inicio')">
+                KAGURABACHI
+            </div>
+
+            <ul class="menu">
+                <li>
+                    <button class="ativo" data-pagina="inicio"
+                        onclick="mostrarPagina('inicio')">
+                        Início
+                    </button>
+                </li>
+
+                <li>
+                    <button data-pagina="personagens"
+                        onclick="mostrarPagina('personagens')">
+                        Personagens
+                    </button>
+                </li>
+
+                <li>
+                    <button data-pagina="universo"
+                        onclick="mostrarPagina('universo')">
+                        Universo
+                    </button>
+                </li>
+
+                <li>
+                    <button data-pagina="espadas"
+                        onclick="mostrarPagina('espadas')">
+                        Espadas Encantadas
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- TELA INICIAL: SOMENTE O TÍTULO E A APRESENTAÇÃO -->
+
+    <main>
+
+        <section id="inicio" class="inicio">
+            <div class="inicio-conteudo">
+
+                <p class="subtitulo">
+                    O legado das lâminas
+                </p>
+
+                <h1>Kagurabachi</h1>
+
+                <p>
+                    Entre na história de Chihiro Rokuhira.
+                    Explore os personagens, conheça o universo
+                    e descubra as Espadas Encantadas.
+                </p>
+
+                <button class="botao"
+                    onclick="mostrarPagina('personagens')">
+                    Explorar o site
+                </button>
+
+            </div>
+        </section>
+
+
+        <!-- PERSONAGENS: APARECE AO CLICAR NO MENU -->
+
+        <section id="personagens" class="pagina" hidden>
+            <div class="container">
+
+                <h2 class="titulo-secao">
+                    <span>Personagens</span>
+                </h2>
+
+                <div class="linha"></div>
+
+                <p class="introducao">
+                    Conheça alguns dos personagens centrais
+                    de Kagurabachi.
+                </p>
+
+                <div class="grade">
+
+                    <article class="card">
+                        <div class="imagem">
+                            <img src="img/Chihiro.jpg"
+                                alt="Chihiro Rokuhira">
+                        </div>
+                        <div class="card-conteudo">
+                            <span class="categoria">Protagonista</span>
+                            <h3>Chihiro Rokuhira</h3>
+                            <p>
+                                Filho do ferreiro Kunishige.
+                                Sua jornada está ligada ao legado
+                                de seu pai e às lâminas roubadas.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="imagem">
+                            <img src="img/Hakuri_Sazanami_Colored_Portrait.webp"
+                                alt="Hakuri Sazanami">
+                        </div>
+                        <div class="card-conteudo">
+                            <span class="categoria">Aliado</span>
+                            <h3>Hakuri Sazanami</h3>
+                            <p>
+                                Integrante do clã Sazanami que
+                                se torna aliado de Chihiro.
+                                Possui grande potencial mágico.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="imagem">
+                            <img src="img/Togo_Shiba_Colored_Portrait.webp" alt="Shiba">
+                        </div>
+                        <div class="card-conteudo">
+                            <span class="categoria">Aliado</span>
+                            <h3>Shiba</h3>
+                            <p>
+                                Aliado experiente de Chihiro e
+                                antigo conhecido de Kunishige.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="imagem">
+                            <img src="imagens/hiyuki.jpg" alt="Seichi Samura">
+                        </div>
+                        <div class="card-conteudo">
+                            <span class="categoria">Portador</span>
+                            <h3>Seichi Samura</h3>
+                            <p>
+                                Uma das combatentes mais poderosas
+                                associadas ao Kamunabi.
+                            </p>
+                        </div>
+                    </article>
+                
+                        
+                    <article class="card">
+                        <div class="imagem">
+                            <img src="img/Genichi_Sojo_Colored_Portrait.webp" alt="Genichi Sojo">
+                        </div>
+                        <div class="card-conteudo">
+                            <span class="categoria">Antagonista</span>
+                            <h3>Genichi Sojo</h3>
+                            <p>
+                                Criminoso que empunhou Kuregumo
+                                e entrou em conflito com Chihiro.
+                            </p>
+                        </div>
+                    </article>
+
+                       
+                    <article class="card">
+                        <div class="imagem">
+                            <img src="img/Yoji_Uruha_Colored_Portrait.webp"
+                                 alt="Yoji Uruha">
+                        </div>
+                        <div class="card-conteudo">
+                            <span class="categoria">Portador</span>
+                            <h3>Yoji Uruha</h3>
+                            <p>
+                                
+                            </p>
+
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- UNIVERSO -->
+
+        <section id="universo" class="pagina" hidden>
+            <div class="container">
+
+                <h2 class="titulo-secao">
+                    O <span>Universo</span>
+                </h2>
+
+                <div class="linha"></div>
+
+                <p class="introducao">
+                    A história combina feitiçaria, disputas
+                    entre organizações e o legado de um
+                    ferreiro extraordinário.
+                </p>
+
+                <div class="universo-grade">
+
+                    <article class="universo-card">
+                        <h3>Kunishige Rokuhira</h3>
+                        <p>
+                            O ferreiro responsável pelas
+                            Espadas Encantadas. Seu trabalho
+                            mudou o curso da Guerra Seitei.
+                        </p>
+                    </article>
+
+                    <article class="universo-card">
+                        <h3>Feitiçaria</h3>
+                        <p>
+                            As habilidades mágicas variam entre
+                            os personagens e influenciam os
+                            conflitos da história.
+                        </p>
+                    </article>
+
+                    <article class="universo-card">
+                        <h3>Kamunabi</h3>
+                        <p>
+                            Organização ligada à proteção
+                            do Japão e ao controle de ameaças
+                            relacionadas à feitiçaria.
+                        </p>
+                    </article>
+
+                    <article class="universo-card">
+                        <h3>Hishaku</h3>
+                        <p>
+                            Grupo envolvido no assassinato
+                            de Kunishige e no roubo das
+                            seis lâminas da Guerra Seitei.
+                        </p>
+                    </article>
+
+                    <article class="universo-card">
+                        <h3>Guerra Seitei</h3>
+                        <p>
+                            Conflito histórico no qual as
+                            lâminas criadas por Kunishige
+                            tiveram papel decisivo.
+                        </p>
+                    </article>
+
+                    <article class="universo-card">
+                        <h3>O legado das lâminas</h3>
+                        <p>
+                            As armas estão ligadas aos seus
+                            portadores, aos acontecimentos
+                            da guerra e à jornada de Chihiro.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ESPADAS E PORTADORES -->
+
+        <section id="espadas" class="pagina" hidden>
+            <div class="container">
+
+                <h2 class="titulo-secao">
+                    Espadas <span>Encantadas</span>
+                </h2>
+
+                <div class="linha"></div>
+
+                <p class="introducao">
+                    As sete lâminas criadas por Kunishige
+                    incluem seis armas da Guerra Seitei e
+                    Enten, criada posteriormente.
+                    A lista distingue as lâminas nomeadas
+                    das que ainda não têm nome confirmado.
+                </p>
+
+                <div class="grade">
+
+                    <!-- ENTEN -->
+
+                    <article class="card">
+                        <div class="imagem">
+                            <img src="img/Enten_manifesting_spirit_energy.webp"
+                                alt="Enten">
+                        </div>
+                        <div class="card-conteudo">
+                            <span class="categoria">Sétima lâmina</span>
+                            <h3>Enten</h3>
+                            <p>
+                                <strong>Portador:</strong>
+                                Chihiro Rokuhira.
+                            </p>
+                            <p>
+                                Criada por Kunishige após a
+                                Guerra Seitei. É a lâmina
+                                utilizada por Chihiro.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- KUREGUMO -->
+
+                    <article class="card">
+                        <div class="imagem">
+                            <img src="img/Cloud_Gouger_Infobox.webp"
+                                alt="Kuregumo">
+                        </div>
+                        <div class="card-conteudo">
+                            <span class="categoria">Lâmina da guerra</span>
+                            <h3>Kuregumo</h3>
+                            <p>
+                                <strong>Portadores conhecidos:</strong>
+                                Ibuki Misaka e Genichi Sojo.
+                            </p>
+                            <p>
+                                Também conhecida como Cloud Gouger.
+                                Foi destruída durante os acontecimentos
+                                envolvendo Chihiro e Sojo.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- MAGATSUMI -->
+
+                    <article class="card">
+                        <div class="imagem">
+                            <img src="img/Akemura_Soga_Full_Body.webp"
+                                alt="Magatsumi">
+                        </div>
+                        <div class="card-conteudo">
+                            <span class="categoria">Shinuchi</span>
+                            <h3>Magatsumi</h3>
+                            <p>
+                                <strong>Portadores associados:</strong>
+                                Akemura Soga; Kyora Sazanami
+                                a utilizou no conflito do leilão.
+                                Yura busca a lâmina.
+                            </p>
+                            <p>
+                                É conhecida também pelo título
+                                Shinuchi. As relações de posse
+                                variam ao longo da trama.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- KUMEYURI -->
+
+                    <article class="card">
+                        <div class="imagem">
+                            <img src="img/Kumeyuri.webp"
+                                alt="Kumeyuri">
+                        </div>
+                        <div class="card-conteudo">
+                            <span class="categoria">Lâmina da guerra</span>
+                            <h3>Kumeyuri</h3>
+                            <p>
+                                <strong>Portadores conhecidos:</strong>
+                                Yoji Uruha e Hiruhiko.
+                            </p>
+                            <p>
+                                Uruha foi seu portador durante
+                                a guerra. Hiruhiko posteriormente
+                                estabelece um contrato com ela.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- TOBIMUNE -->
+
+                    <article class="card">
+                        <div class="imagem">
+                            <img src="img/Tobimune.webp"
+                                alt="Tobimune">
+                        </div>
+                        <div class="card-conteudo">
+                            <span class="categoria">Lâmina da guerra</span>
+                            <h3>Tobimune</h3>
+                            <p>
+                                <strong>Portador conhecido:</strong>
+                                Seiichi Samura.
+                            </p>
+                            <p>
+                                Lâmina associada ao espadachim
+                                cego Samura, conhecido por sua
+                                extraordinária habilidade.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- LÂMINA SEM NOME 1 -->
+
+                    <article class="card">
+                        <div class="imagem">
+                            <img src="imagens/espada-desconhecida1.jpg"
+                                alt="Lâmina encantada ainda sem nome">
+                        </div>
+                        <div class="card-conteudo">
+                            <span class="categoria">Nome não confirmado</span>
+                            <h3>Lâmina sem nome 1</h3>
+                            <p>
+                                <strong>Portador associado:</strong>
+                                Subaru Urita.
+                            </p>
+                            <p>
+                                A identidade oficial desta lâmina
+                                ainda não está confirmada nas
+                                fontes consultadas.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- LÂMINA SEM NOME 2 -->
+
+                    <article class="card">
+                        <div class="imagem">
+                            <img src="imagens/espada-desconhecida2.jpg"
+                                alt="Outra lâmina encantada sem nome">
+                        </div>
+                        <div class="card-conteudo">
+                            <span class="categoria">Nome não confirmado</span>
+                            <h3>Lâmina sem nome 2</h3>
+                            <p>
+                                <strong>Portador:</strong>
+                                ainda não confirmado.
+                            </p>
+                            <p>
+                                A existência da lâmina faz parte
+                                do conjunto original de seis
+                                armas da Guerra Seitei.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+
+                <p class="aviso">
+                    Atenção: informações sobre portadores e
+                    acontecimentos posteriores podem conter
+                    spoilers do mangá.
+                </p>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- RODAPÉ -->
+
+    <footer>
+        <h3>KAGURABACHI</h3>
+        <p>Projeto de fã desenvolvido para estudar HTML, CSS e JavaScript.</p>
+        <p>Obra de Takeru Hokazono. Direitos reservados aos respectivos titulares.</p>
+    </footer>
+
+
+    <!-- JAVASCRIPT: CONTROLA AS PÁGINAS DO MENU -->
+
+    <script>
+        function mostrarPagina(paginaEscolhida) {
+            const paginas = [
+                "inicio",
+                "personagens",
+                "universo",
+                "espadas"
+            ];
+
+            paginas.forEach(function(pagina) {
+                const secao = document.getElementById(pagina);
+
+                if (pagina === paginaEscolhida) {
+                    secao.hidden = false;
+                } else {
+                    secao.hidden = true;
+                }
+            });
+
+            const botoes = document.querySelectorAll("[data-pagina]");
+
+            botoes.forEach(function(botao) {
+                if (botao.dataset.pagina === paginaEscolhida) {
+                    botao.classList.add("ativo");
+                } else {
+                    botao.classList.remove("ativo");
+                }
+            });
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+    </script>
+
+</body>
+</html>
